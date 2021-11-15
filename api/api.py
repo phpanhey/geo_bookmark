@@ -12,9 +12,12 @@ def query_records():
 
 
 def read_records():
-    filename = os.path.join(app.root_path,'data.json')
-    with open(filename, "r") as f:
+    with open(get_data_filename(), "r") as f:
         return json.loads(f.read())
+
+
+def get_data_filename():
+    return os.path.join(app.root_path, "data.json")
 
 
 @app.route("/", methods=["PUT"])
@@ -32,8 +35,7 @@ def set_record_id(request_record):
 
 
 def write_records(records):
-    filename = os.path.join(app.root_path,'data.json')
-    with open(filename, "w") as f:
+    with open(get_data_filename(), "w") as f:
         f.write(json.dumps(records, indent=2))
 
 
