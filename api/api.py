@@ -1,6 +1,7 @@
 import json
 from flask import Flask, request, jsonify
 import uuid
+import os
 
 app = Flask(__name__)
 
@@ -11,7 +12,8 @@ def query_records():
 
 
 def read_records():
-    with open("data.json", "r") as f:
+    filename = os.path.join(app.root_path,'data.json')
+    with open(filename, "r") as f:
         return json.loads(f.read())
 
 
@@ -30,7 +32,8 @@ def set_record_id(request_record):
 
 
 def write_records(records):
-    with open("data.json", "w") as f:
+    filename = os.path.join(app.root_path,'data.json')
+    with open(filename, "w") as f:
         f.write(json.dumps(records, indent=2))
 
 
@@ -49,7 +52,9 @@ def update_record():
 def delte_record():
     record_to_delte = json.loads(request.data)
     records = read_records()
-    write_records([record for record in records if record["id"] != record_to_delte["id"]])
+    write_records(
+        [record for record in records if record["id"] != record_to_delte["id"]]
+    )
     return jsonify(record_to_delte)
 
 
