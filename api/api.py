@@ -2,11 +2,13 @@ import json
 from flask import Flask, request, jsonify
 import uuid
 import os
+from flask_cors import cross_origin
 
 app = Flask(__name__)
 
 
 @app.route("/", methods=["GET"])
+@cross_origin()
 def query_records():
     return jsonify(read_records())
 
@@ -21,6 +23,7 @@ def get_data_filename():
 
 
 @app.route("/", methods=["PUT"])
+@cross_origin()
 def create_record():
     request_record = set_record_id(json.loads(request.data))
     records = read_records()
@@ -40,6 +43,7 @@ def write_records(records):
 
 
 @app.route("/", methods=["POST"])
+@cross_origin()
 def update_record():
     request_record = json.loads(request.data)
     records = read_records()
@@ -51,6 +55,7 @@ def update_record():
 
 
 @app.route("/", methods=["DELETE"])
+@cross_origin()
 def delte_record():
     record_to_delte = json.loads(request.data)
     records = read_records()
@@ -58,6 +63,7 @@ def delte_record():
         [record for record in records if record["id"] != record_to_delte["id"]]
     )
     return jsonify(record_to_delte)
+
 
 
 if __name__ == "__main__":
