@@ -27,11 +27,16 @@ def get_data_filename():
 @cross_origin()
 def create_record():
     request_record = set_record_id(json.loads(request.data))
-    request_record["created_at"] = str(datetime.now())
+    request_record = set_timestamp(request_record)
     records = read_records()
     records.append(request_record)
     write_records(records)
     return jsonify(request_record)
+
+
+def set_timestamp(record):
+    record["created_at"] = datetime.now()
+    return record
 
 
 def set_record_id(request_record):
@@ -48,7 +53,7 @@ def write_records(records):
 @cross_origin()
 def update_record():
     request_record = json.loads(request.data)
-    request_record["created_at"] = str(datetime.now())
+    request_record = set_timestamp(request_record)
     records = read_records()
     for idx, record in enumerate(records):
         if record["id"] == request_record["id"]:
