@@ -35,7 +35,7 @@ def create_record():
 
 
 def set_timestamp(record):
-    record["created_at"] = datetime.now()
+    record["created_at"] = str(datetime.now())
     return record
 
 
