@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 import uuid
 import os
 from flask_cors import cross_origin
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -26,6 +27,7 @@ def get_data_filename():
 @cross_origin()
 def create_record():
     request_record = set_record_id(json.loads(request.data))
+    request_record["created_at"] = datetime.now()
     records = read_records()
     records.append(request_record)
     write_records(records)
@@ -46,6 +48,7 @@ def write_records(records):
 @cross_origin()
 def update_record():
     request_record = json.loads(request.data)
+    request_record["created_at"] = datetime.now()
     records = read_records()
     for idx, record in enumerate(records):
         if record["id"] == request_record["id"]:
@@ -63,7 +66,6 @@ def delte_record():
         [record for record in records if record["id"] != record_to_delte["id"]]
     )
     return jsonify(record_to_delte)
-
 
 
 if __name__ == "__main__":
