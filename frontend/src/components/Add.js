@@ -1,14 +1,18 @@
+import LoadingScreen from './LoadingScreen';
+
 const Add = () => {
     return (
-        <div className="flex flex-wrap container m-4">
-            <button onClick={clickedAdd} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-3xl">
-                +
-            </button>
+        <div class="flex h-screen justify-center items-center">
+            <LoadingScreen/>
+            <div class="text-center">
+                <h1 class="text-3xl">add house</h1>
+                <button onClick={handleAddClick} class="mt-3 bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded text-4xl">+</button>
+            </div>
         </div>
     )
 }
 
-const clickedAdd = () => {
+const handleAddClick = () => {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
             const coordinates = [position.coords.latitude, position.coords.longitude];
@@ -17,13 +21,12 @@ const clickedAdd = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ description: "haus", coordinates: coordinates })
             };
-            fetch('http://api.philipp-panhey.de/', requestOptions).then(response => response.json());
+            fetch('http://api.philipp-panhey.de/', requestOptions).then((response) => {
+                response.json();
+                alert("done");
+            });
         });
-
     }
-
-
-
 }
 
 export default Add
