@@ -1,11 +1,15 @@
+import loader from '../images/loader.gif';
 
-
-const LoadingScreen = () => {
-    return (
-        <div>
-            <h1>hallo</h1>            
-        </div>
-    )
+const LoadingScreen = ({ loading }) => {
+    if (loading) {
+        return (
+            <div>
+                <img src={loader} alt="loading animation" />
+            </div>
+        )
+    }
+    return (<div></div>)
+    
 }
 
 export default LoadingScreen
