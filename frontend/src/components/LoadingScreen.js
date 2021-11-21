@@ -8,8 +8,8 @@ const LoadingScreen = ({ loading }) => {
             </div>
         )
     }
-    return (<div></div>)
-    
+    return (null)
+
 }
 
 export default LoadingScreen
