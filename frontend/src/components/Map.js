@@ -2,10 +2,12 @@ import 'leaflet/dist/leaflet.css';
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import {Icon} from 'leaflet'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import Header from './Header';
 
 const Map = () => {
     return (
-        <div className="container">
+        <div>
+            <Header />
             <MapContainer center={[53.095158,8.806068]} zoom={13} scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
