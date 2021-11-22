@@ -4,7 +4,9 @@ const Header = () => {
     return (
         <div className="container m-4 flex flex-wrap">
             <div className="w-1/4">
+                <Link to="/">
                 <img src={logo} alt="geo bookmark logo" />
+                </Link>
             </div>
             <div className="w-3/4 flex justify-end">
                 <nav>
