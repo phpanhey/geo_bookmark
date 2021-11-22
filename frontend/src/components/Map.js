@@ -20,12 +20,15 @@ const Map = () => {
     return (
         <div>
             <Header />
-            <MapContainer center={[53.095158, 8.806068]} zoom={15} scrollWheelZoom={true}>
+            <MapContainer center={[53.095158, 8.806068]} zoom={15} scrollWheelZoom={false}>
                 <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                    url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
                 />
-                {map_entries.map((entry) => <Marker key={entry.id} position={entry.coordinates} icon={icon} > <Popup> {entry.description} </Popup> </Marker>)}
+                {map_entries.map((entry) =>
+                    <Marker key={entry.id} position={entry.coordinates} icon={icon} >
+                        <Popup> {entry.description} </Popup>
+                    </Marker>)}
             </MapContainer>
         </div >
     )
