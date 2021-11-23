@@ -10,7 +10,7 @@ const Map = () => {
     const [map_entries, setMapEntries] = useState([]);
 
     useEffect(() => {
-        fetch('http://api.philipp-panhey.de')
+        fetch('https://api.philipp-panhey.de/')
             .then(response => response.json())
             .then(data => setMapEntries(data));
     });

@@ -14,7 +14,7 @@ const Add = () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ description: "haus", coordinates: coordinates })
                 };
-                fetch('http://api.philipp-panhey.de/', requestOptions).then((response) => {
+                fetch('https://api.philipp-panhey.de/', requestOptions).then((response) => {
                     response.json();
                     setLoading(false);
                     alert("✓");
