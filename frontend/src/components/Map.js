@@ -13,7 +13,7 @@ const Map = () => {
         fetch('https://api.philipp-panhey.de/')
             .then(response => response.json())
             .then(data => setMapEntries(data));
-    });
+    },[]);
 
     const icon = new Icon({ iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41] })
 
